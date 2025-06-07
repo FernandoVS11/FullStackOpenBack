@@ -65,6 +65,12 @@ app.post('/api/persons', (req, res) => {
   res.json(newPerson);
 });
 
+const path = require('path')
+app.use(express.static(path.resolve(__dirname, 'dist')))
+app.get('*', (req, res) => {
+  res.sendFile(path.resolve(__dirname, 'dist', 'index.html'))
+})
+
 const PORT = 3001;
 app.listen(PORT, () => {
   console.log(`Server running on port ${PORT}`);
